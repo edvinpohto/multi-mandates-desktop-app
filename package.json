@@ -1,0 +1,24 @@
+{
+  "name": "electron-app",
+  "version": "1.0.0",
+  "description": "Electron app to use the vaalit-XML-parser",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "Edvin Pohto",
+  "license": "MIT",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.1.0",
+    "electron": "^23.2.1"
+  },
+  "dependencies": {
+    "buffer": "^6.0.3",
+    "git": "^0.1.5",
+    "iconv-lite": "^0.6.3",
+    "text-encoding": "^0.7.0",
+    "util": "^0.12.5",
+    "xmldom": "^0.6.0"
+  }
+}

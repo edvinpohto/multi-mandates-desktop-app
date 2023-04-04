@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <script src="./js/renderer.js" defer></script>
+    <title>MultiMandates - XML to CSV Parser</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <img src="./images/logo.png" alt="EVA" class="top-left-image">
+      <div class="content">
+        <h1>Welcome to the MultiMandate XML to CSV Parser 👋</h1>
+    
+        <div>
+          <p>Choose a file from you computer and press the button to parse it.</p>
+          <p>After the script has finished executing, you can find the result by pressing the button assigned for opening the output folder.</p>
+        </div>
+    
+        <div>
+          <input type="text" id="selectedFile" placeholder="Choose a file" readonly />
+          <button id="chooseFileBtn">Choose File</button>
+        </div>
+        
+        <button id="sendFileBtn">Parse XML to CSV</button>
+
+        <div id="spinner-container">
+          <div id="spinner"></div>
+        </div>
+
+        <button id="openOutputFolderBtn">Open output folder</button>
+      </div>
+    </div>
+  </body>
+</html>
