@@ -67,6 +67,6 @@ ipcMain.on('run-script', async (event, filePath) => {
 });
 
 ipcMain.on('open-output-folder', (event) => {
-  const outputFolderPath = path.join(__dirname, 'scripts', 'output');
+  const outputFolderPath = path.join(__dirname, 'scripts', 'results');
   shell.openPath(outputFolderPath);
 });
