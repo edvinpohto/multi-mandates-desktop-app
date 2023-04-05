@@ -14,10 +14,7 @@
     "electron": "^23.2.1"
   },
   "dependencies": {
-    "buffer": "^6.0.3",
-    "git": "^0.1.5",
     "iconv-lite": "^0.6.3",
-    "text-encoding": "^0.7.0",
     "util": "^0.12.5",
     "xmldom": "^0.6.0"
   }

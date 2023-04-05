@@ -98,6 +98,24 @@ button:hover {
     }
 }
 
+a {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align:center;
+    padding: 5px;
+    opacity: 0.3;
+    font-size: 13px;
+    margin-bottom: 5px; 
+}
+
 
 
 

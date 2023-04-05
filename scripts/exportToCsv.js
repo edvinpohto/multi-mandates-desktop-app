@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const { promisify } = require('util');
 
 const writeFileAsync = promisify(fs.writeFile);
@@ -22,6 +23,13 @@ function arrayToCSV(data) {
 }
 
 async function writeCSVFile(filePath, data) {
+  const outputDirectory = path.dirname(filePath);
+
+  // Create the output directory if it doesn't exist
+  if (!fs.existsSync(outputDirectory)) {
+    fs.mkdirSync(outputDirectory, { recursive: true });
+  }
+
   const csvContent = arrayToCSV(data);
   await writeFileAsync(filePath, csvContent);
 }
