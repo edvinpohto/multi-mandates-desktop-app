@@ -37,7 +37,27 @@ h1 {
     gap: 20px; /* Spacing between content elements */
 }
 
-#selectedFile {
+#input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+  
+#input-container > div {
+display: flex;
+gap: 10px;
+}
+
+#input-container button {
+    flex: 0.3;
+}
+
+#input-container input {
+    flex: 0.7;
+}
+
+#selectedFile, #selectedOutputFolder {
     padding: 5px;
     border: none;
     border-radius: 5px;
@@ -47,7 +67,7 @@ h1 {
     transition: box-shadow 0.2s ease-in-out;
 }
 
-#selectedFile:focus {
+#selectedFile:focus, #selectedOutputFolder:focus {
     outline: none;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
 }
@@ -96,6 +116,10 @@ button:hover {
     100% {
         transform: rotate(360deg);
     }
+}
+
+#openOutputFolderBtn {
+    width: 100%;
 }
 
 a {

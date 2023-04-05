@@ -2,11 +2,10 @@ const { parentPort } = require('worker_threads');
 const { spawn } = require('child_process');
 const path = require('path');
 
-parentPort.on('message', (filePath) => {
-  // Replace 'your-script.js' with the name of your Node.js script
-//   const scriptPath = path.join(__dirname, 'your-script.js');
-  const scriptPath = path.join('./scripts/', 'nodeXmlParser.js');
-  const script = spawn('node', ['--experimental-modules', scriptPath, filePath]);
+parentPort.on('message', ({ inputFilePath, outputFolderPath }) => {
+  const scriptPath = path.join(__dirname, '/scripts/nodeXmlParser.js');
+  // const scriptPath = path.join('./scripts/', 'nodeXmlParser.js');
+  const script = spawn('node', ['--experimental-modules', scriptPath, inputFilePath, outputFolderPath]);
 
   script.stdout.on('data', (data) => {
     console.log(`stdout: ${data}`);

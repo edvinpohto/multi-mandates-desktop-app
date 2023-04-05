@@ -4,14 +4,16 @@ const { promisify } = require('util');
 const iconv = require('iconv-lite');
 const writeCSVFile = require('./exportToCsv.js');
 
-// Get the path from the command line environment (?)
-const filePath = process.argv[2];
+// Get the input path and output folder from the command line environment (?)
+const inputFilePath = process.argv[2];
+const outputFolderPath = process.argv[3];
+console.log(process.argv)
 
 const readFileAsync = promisify(fs.readFile);
 
-async function nodeLoadAndParseXML(filePath) {
+async function nodeLoadAndParseXML(inputFilePath, outputFolderPath) {
   // Read the XML file with ISO-8859-1 encoding
-  const buffer = await readFileAsync(filePath);
+  const buffer = await readFileAsync(inputFilePath);
   // console.log(buffer)
   const xmlData = iconv.decode(buffer, 'ISO-8859-1');
 
@@ -80,14 +82,8 @@ async function nodeLoadAndParseXML(filePath) {
     }
   }
 
-  // Log the extracted data
-  // console.log(candidates.length);
-  console.log(candidates);
-  // console.log(nominators)
-
-
   // Use the writeCSVFile function to write the candidates array to a CSV file
-  writeCSVFile('./scripts/results/candidates.csv', candidates)
+  writeCSVFile(outputFolderPath, 'candidates.csv', candidates)
     .then(() => console.log('CSV file has been written'))
     .catch(error => console.error('Error writing CSV file:', error));
 }
@@ -95,4 +91,4 @@ async function nodeLoadAndParseXML(filePath) {
 // Change the filepath here to choose where the data is retrieved from
 // Commented out here as it is called elsewhere
 // nodeLoadAndParseXML('C:/Users/epo/Documents/vaalit_projekti/test-files/testFile.xml')
-nodeLoadAndParseXML(filePath)
+nodeLoadAndParseXML(inputFilePath, outputFolderPath)

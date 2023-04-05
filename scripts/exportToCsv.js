@@ -22,16 +22,22 @@ function arrayToCSV(data) {
   return csv.join('\r\n');
 }
 
-async function writeCSVFile(filePath, data) {
-  const outputDirectory = path.dirname(filePath);
+async function writeCSVFile(folderPath, fileName, data) {
+  try {
+    // Create the directory if it doesn't exist
+    if (!fs.existsSync(folderPath)) {
+      fs.mkdirSync(folderPath, { recursive: true });
+    }
 
-  // Create the output directory if it doesn't exist
-  if (!fs.existsSync(outputDirectory)) {
-    fs.mkdirSync(outputDirectory, { recursive: true });
+    // Join the directory path and file name to create the full file path
+    const filePath = path.join(folderPath, fileName);
+
+    const csvContent = arrayToCSV(data);
+    await writeFileAsync(filePath, csvContent);
+  } catch (err) {
+    console.error(err);
   }
 
-  const csvContent = arrayToCSV(data);
-  await writeFileAsync(filePath, csvContent);
 }
 
 module.exports = writeCSVFile;

@@ -5,7 +5,7 @@ const path = require('path')
 function createWindow() {
   const win = new BrowserWindow({
     width: 800,
-    height: 600,
+    height: 800,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       // nodeIntegration: true,
@@ -44,11 +44,18 @@ ipcMain.on('open-file-dialog', (event) => {
   });
 });
 
-ipcMain.on('run-script', async (event, filePath) => {
+ipcMain.on('open-output-dialog', async (event) => {
+  const result = await dialog.showOpenDialog({ properties: ['openDirectory'] });
+  if (!result.canceled && result.filePaths.length > 0) {
+    event.reply('output-folder-selected', result.filePaths[0]);
+  }
+});
+
+ipcMain.on('run-script', async (event, { inputFilePath, outputFolderPath }) => {
     const workerPath = path.join(__dirname, 'worker.js');
     const worker = new Worker(workerPath);
   
-    worker.postMessage(filePath);
+    worker.postMessage({ inputFilePath, outputFolderPath });
 
     worker.on('message', () => {
       console.log('Message received from worker - finishing');
@@ -66,7 +73,8 @@ ipcMain.on('run-script', async (event, filePath) => {
     });
 });
 
-ipcMain.on('open-output-folder', (event) => {
-  const outputFolderPath = path.join(__dirname, 'scripts', 'results');
-  shell.openPath(outputFolderPath);
+ipcMain.on('open-output-folder', (event, folderPath) => {
+  // const outputFolderPath = path.join(__dirname, 'scripts', 'results');
+  console.log('Folder path',folderPath)
+  shell.openPath(folderPath);
 });

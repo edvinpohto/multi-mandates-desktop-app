@@ -25,19 +25,27 @@
           <p>Choose a file from you computer and press the button to parse it. The new CSV file will overwrite any old results that may exist in the directory.</p>
           <p>After the script has finished executing, you can find the result by pressing the button assigned for opening the output folder.</p>
         </div>
-    
-        <div>
-          <input type="text" id="selectedFile" placeholder="Choose a file" readonly />
-          <button id="chooseFileBtn">Choose File</button>
+
+        <div id="input-container">
+          <div>
+            <button id="chooseFileBtn" class="inputBtn">Choose File</button>
+            <input type="text" id="selectedFile" class="inputField" placeholder="Choose a file" readonly />
+          </div>
+  
+          <div>
+            <button id="chooseOutputDestBtn" class="inputBtn">Choose Destination</button>
+            <input type="text" id="selectedOutputFolder" class="inputField" placeholder="Choose a destination" readonly>
+          </div>
+          
+          <button id="sendFileBtn">Parse XML to CSV</button>
         </div>
-        
-        <button id="sendFileBtn">Parse XML to CSV</button>
+    
 
         <div id="spinner-container">
           <div id="spinner"></div>
         </div>
 
-        <button id="openOutputFolderBtn">Open output folder</button>
+        <button id="openOutputFolderBtn">Open Output Folder</button>
       </div>
       
     </div>
