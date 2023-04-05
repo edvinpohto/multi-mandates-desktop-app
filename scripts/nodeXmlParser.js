@@ -87,7 +87,7 @@ async function nodeLoadAndParseXML(filePath) {
 
 
   // Use the writeCSVFile function to write the candidates array to a CSV file
-  writeCSVFile('./scripts/output/candidates.csv', candidates)
+  writeCSVFile('./scripts/results/candidates.csv', candidates)
     .then(() => console.log('CSV file has been written'))
     .catch(error => console.error('Error writing CSV file:', error));
 }
